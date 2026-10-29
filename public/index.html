@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Viera LiveKit — Your stream, your rules</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">V<span>✦</span></div>
+      <div><b>VIERA LIVEKIT</b><small>Your stream. Your rules.</small></div>
+      <span id="connection" class="badge">Twitch disconnected</span
+      ><button id="stop" class="danger">■ STOP ALL</button>
+    </header>
+    <main>
+      <section class="hero">
+        <span class="eyebrow">STREAM CONTROL ROOM</span>
+        <h1>Make chat part<br />of the show<span>.</span></h1>
+        <p>Bring your own moments. Let your community set them in motion.</p>
+      </section>
+      <section class="setup">
+        <h2>1. Connect your stage</h2>
+        <label>OBS Browser Source URL<input id="overlay-url" readonly /></label>
+        <p>
+          Add one Browser Source at 1920 × 1080. Enable “Control audio via OBS”.
+        </p>
+        <a id="open-overlay" target="_blank">Open overlay for preview ↗</a
+        ><span id="overlay-count"></span>
+        <h2>2. Connect Twitch</h2>
+        <label
+          >Twitch public application client ID<input
+            id="client-id"
+            placeholder="From dev.twitch.tv/console/apps"
+            autocomplete="off" /></label
+        ><button id="connect">Connect Twitch · read chat only</button
+        ><button id="disconnect" class="quiet">Disconnect</button>
+        <p id="oauth-status">
+          Uses Twitch device authorization. Tokens stay in memory and never
+          enter the repository.
+        </p>
+        <p id="twitch-detail"></p>
+      </section>
+      <section>
+        <div class="section-title">
+          <div>
+            <span class="eyebrow">READY TO PLAY</span>
+            <h2>Your interactions</h2>
+          </div>
+          <button id="add">+ Create interaction</button>
+        </div>
+        <div id="library" class="cards"></div>
+      </section>
+      <section class="activity">
+        <h2>Live activity</h2>
+        <p id="queue-status">Queue idle</p>
+        <pre id="activity">
+Waiting for events. Preview is labelled separately from Twitch live chat.</pre>
+      </section>
+      <div id="notice" role="status"></div>
+    </main>
+    <footer>LOCAL FIRST · NO CLOUD · NO PAID APIS</footer>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

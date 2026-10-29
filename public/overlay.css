@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-family: "Segoe UI", sans-serif;
+  color: white;
+}
+#stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#stage video,
+#stage img {
+  max-width: 75vw;
+  max-height: 70vh;
+  border-radius: 24px;
+}
+#stage .message {
+  position: absolute;
+  bottom: 13%;
+  font-size: 42px;
+  background: #111323e8;
+  border: 2px solid #c6f176;
+  padding: 15px 32px;
+  border-radius: 15px;
+  box-shadow: 0 10px 50px #0007;
+  max-width: 90%;
+  overflow-wrap: anywhere;
+}
+.scroll {
+  animation: scroll 9s linear forwards;
+  white-space: nowrap;
+}
+@keyframes scroll {
+  from {
+    transform: translateX(100vw);
+  }
+  to {
+    transform: translateX(-100vw);
+  }
+}
+#board {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  max-width: 350px;
+  background: #141722e8;
+  border: 1px solid #c6f17688;
+  border-radius: 18px;
+  padding: 20px;
+}
+#board:empty {
+  display: none;
+}
+#board h2 {
+  font-size: 18px;
+  color: #c6f176;
+  margin: 0 0 12px;
+}
+#board p {
+  font-size: 14px;
+  margin: 10px 0;
+  border-top: 1px solid #ffffff25;
+  padding-top: 8px;
+}
+#status {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 13px;
+  color: #fff;
+  background: #151525cc;
+  padding: 8px;
+  border-radius: 8px;
+}
+#status:empty {
+  display: none;
+}
+.particle {
+  position: absolute;
+  font-size: 40px;
+  animation: fall 5s linear forwards;
+}
+@keyframes fall {
+  from {
+    transform: translateY(-65vh) rotate(0);
+  }
+  to {
+    transform: translateY(65vh) rotate(540deg);
+  }
+}
+.pulse {
+  position: absolute;
+  inset: 10%;
+  border: 8px solid #c6f176;
+  border-radius: 50%;
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    transform: scale(0.8);
+    opacity: 0.1;
+  }
+}
