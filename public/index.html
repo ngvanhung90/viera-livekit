@@ -19,7 +19,8 @@
         <h1>Make chat part<br />of the show<span>.</span></h1>
         <p>Bring your own moments. Let your community set them in motion.</p>
       </section>
-      <section class="setup">
+      <details class="setup" id="setup">
+        <summary>Set up OBS & Twitch</summary>
         <h2>1. Connect your stage</h2>
         <label>OBS Browser Source URL<input id="overlay-url" readonly /></label>
         <p>
@@ -28,19 +29,23 @@
         <a id="open-overlay" target="_blank">Open overlay for preview ↗</a
         ><span id="overlay-count"></span>
         <h2>2. Connect Twitch</h2>
-        <label
-          >Twitch public application client ID<input
-            id="client-id"
-            placeholder="From dev.twitch.tv/console/apps"
-            autocomplete="off" /></label
-        ><button id="connect">Connect Twitch · read chat only</button
+        <details>
+          <summary>Advanced: use a different Twitch public client</summary>
+          <label
+            >Twitch public application client ID<input
+              id="client-id"
+              placeholder="From dev.twitch.tv/console/apps"
+              autocomplete="off"
+          /></label>
+        </details>
+        <button id="connect">Connect Twitch · read chat only</button
         ><button id="disconnect" class="quiet">Disconnect</button>
         <p id="oauth-status">
           Uses Twitch device authorization. Tokens stay in memory and never
           enter the repository.
         </p>
         <p id="twitch-detail"></p>
-      </section>
+      </details>
       <section>
         <div class="section-title">
           <div>

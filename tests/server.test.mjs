@@ -14,7 +14,12 @@ let child;
 async function start() {
   child = spawn(process.execPath, ["src/server.mjs"], {
     cwd: ROOT,
-    env: { ...process.env, PORT: "13210", LIVEKIT_DATA: DATA },
+    env: {
+      ...process.env,
+      PORT: "13210",
+      LIVEKIT_DATA: DATA,
+      LIVEKIT_CLIENT_ID: "",
+    },
     stdio: ["ignore", "pipe", "pipe"],
     windowsHide: true,
   });

@@ -4,5 +4,59 @@
     "type": "video",
     "name": "Cosmic thank you · original animation",
     "file": "cosmic-thanks.mp4"
+  },
+  {
+    "id": "victory-clip",
+    "type": "video",
+    "name": "Victory dance · original animation",
+    "file": "victory-dance.mp4"
+  },
+  {
+    "id": "chime",
+    "type": "audio",
+    "name": "Bright chime · original sound",
+    "file": "chime.wav"
+  },
+  {
+    "id": "boing",
+    "type": "audio",
+    "name": "Comic boing · original sound",
+    "file": "boing.wav"
+  },
+  {
+    "id": "levelup",
+    "type": "audio",
+    "name": "Level up · original sound",
+    "file": "levelup.wav"
+  },
+  {
+    "id": "pop",
+    "type": "audio",
+    "name": "Little pops · original sound",
+    "file": "pop.wav"
+  },
+  {
+    "id": "thanks-card",
+    "type": "image",
+    "name": "You make it shine · original card",
+    "file": "thanks-card.png"
+  },
+  {
+    "id": "laugh-card",
+    "type": "image",
+    "name": "Plot twist · original card",
+    "file": "laugh-card.png"
+  },
+  {
+    "id": "victory-card",
+    "type": "image",
+    "name": "Small win · original card",
+    "file": "victory-card.png"
+  },
+  {
+    "id": "community-card",
+    "type": "image",
+    "name": "You belong here · original card",
+    "file": "community-card.png"
   }
 ]

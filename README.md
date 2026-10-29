@@ -1,83 +1,93 @@
 # Viera LiveKit
 
-Your stream. Your rules. A local Windows control room that turns streamer-defined Twitch chat milestones into OBS media and viewer message permissions.
+**Your stream. Your rules.** A Windows app that turns Twitch chat into streamer-defined OBS media moments and viewer rewards. Built with Codex for the Codex x TwitchCon Hackathon 2026.
 
-## Current checkpoint — 30 October 2026
+## Run
 
-This is an **engineering checkpoint, not a completed hackathon submission**. The app and OBS Browser Source have been run locally. The initial original MP4 and its audio were captured in an actual OBS recording. The registered Twitch OAuth app is blocked by Twitch's requirement to enable two-factor authentication on the developer account. **Real Twitch OAuth/EventSub/chat E2E is NOT verified.** Protocol fixtures are explicitly separate from live evidence. The full 12-template pack, final demo and submission remain pending. No claim of submission is made.
-
-## Run locally
-
-Requirements: Windows 10/11, Node.js 22 or newer (tested with 24.15.0), npm, OBS Studio with Browser Source support. No paid service or cloud backend is required.
+Install Node.js 22 or newer (tested with 24.15.0), then:
 
 ```sh
+git clone https://github.com/ngvanhung90/viera-livekit.git
+cd viera-livekit
 npm ci
 npm start
 ```
 
-Open <http://localhost:3210>. To stop, press Ctrl+C in the terminal. Configurations and uploaded media live in `data/`, alongside a stable overlay access key. Keep this folder when updating the app. The last config is backed up as `data/config.json.backup` before saving. Twitch access tokens remain in memory; restart requires authorization again. Viewer progress and entitlements are session-only and reset at restart.
+Open <http://localhost:3210>. You can also double-click `Launch.cmd` after installing Node.js. No FFmpeg, Python, cloud backend, database, paid AI API or subscription is needed to run the shipped app. OBS Studio with Browser Source support is needed for the stream overlay. Windows system TTS requires an installed Windows desktop speech voice.
 
-For a separate QA instance, set `PORT` and `LIVEKIT_DATA` before starting. Do not run two processes against the same data directory.
+## Start with a moment
 
-## OBS setup
+The starter library contains **12 working templates and 24 configurable recipes**, including two original MP4 animations, four original WAV sounds, four original image cards and four CSS effects. Every template can be previewed without Twitch authorization, customized or copied into your own interaction. An overlay must be open in OBS or a browser to receive previews.
 
-1. Start LiveKit and copy **OBS Browser Source URL** from the dashboard.
-2. In OBS, add one **Browser** source, set the URL and resolution to 1920 × 1080.
-3. Enable **Control audio via OBS** and check its mixer volume. Keep the source enabled and do not use multiple copies of the overlay with audio enabled.
-4. Click **Preview** or **Trigger on overlay**. A bundled 6-second animated MP4 plays alongside viewer-name text. Preview is visibly labelled and never grants viewer entitlements.
-5. Use **STOP ALL** to stop the active job, all queued media, and speech synthesis if present.
+1. Open **Set up OBS & Twitch** and copy the OBS URL.
+2. Add one OBS Browser Source at 1920 x 1080; enable **Control audio via OBS**.
+3. Click a template's **Preview**. Preview is visibly labelled and does not issue viewer entitlements.
+4. Choose **Use & customize**, or **+ Add milestone / reward**. Change the trigger, threshold, cooldown and outputs. Preview, then save.
+5. Click **Connect Twitch**, open the Twitch device authorization link and approve **user:read:chat**. The app's public client is included; streamers do not need to register their own developer app. No client secret is collected. The Advanced field supports a different public client if desired.
+6. Send the configured command in the authenticated streamer's own Twitch channel. Valid chat events run the saved interaction automatically through EventSub WebSocket.
 
-The rewards board shows enabled chat rules, exact thresholds, redemption commands, allowed uses, expiry and cooldown. Show/hide and compact controls update the same OBS source.
+Buttons and F1-F12 are also available. Shortcuts work while the dashboard is focused, rather than globally across Windows. Use one overlay source to avoid duplicate sound. **STOP ALL** stops the active job, pending jobs and active system speech generation.
 
-## Twitch setup
+## Viewer rewards
 
-1. Sign into <https://dev.twitch.tv/console/apps>. Twitch requires 2FA enabled on the account to register an application. The account owner must complete their own identity/2FA challenges.
-2. Register a **Public** application such as Viera LiveKit in **Broadcaster Suite**. If a redirect URL is requested, use `http://localhost:3210/auth/callback`; this build uses device authorization, not that redirect route.
-3. Copy the public client ID into LiveKit and click **Connect Twitch**.
-4. Follow the Twitch authorization link, enter the displayed device code and approve **user:read:chat** only. No client secret is required or collected.
-5. LiveKit validates the token, connects to EventSub WebSocket and subscribes to `channel.chat.message` for the authenticated streamer's own channel. Connected means the subscription was accepted. It does not by itself prove chat-to-OBS E2E.
-6. Send `!wow` in that channel. Only after the event receipt, queue entry and actual OBS playback are verified can the live E2E gate pass.
+A rule has a trigger, streamer-defined threshold and one or more results. Results can play video/audio, show images/GIFs, display text, run effects, speak through a Windows system voice or grant a viewer a message action. Multiple results start together in one job.
 
-Device authorization follows [Twitch's OAuth documentation](https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#device-code-grant-flow). Keepalive, reconnect transfer and subscription recreation follow [Twitch's WebSocket protocol](https://dev.twitch.tv/docs/eventsub/handling-websocket-events/). Validation runs at connection and hourly while authorized.
+Example configuration, all editable:
 
-## Configure interactions
+- `!heart`, threshold 3, cooldown 5 seconds: earn one `!scroll your message` use, valid for 120 seconds.
+- `!cheer`, threshold 5: earn one `!speak your message` use, valid for 120 seconds.
+- `!thanks`, threshold 1: play a selected video, speak a thank-you message and display the viewer's name.
 
-Choose **Edit**, **Duplicate**, or **+ Add milestone / reward**. Select chat command, dashboard button or F1–F12 while the dashboard has keyboard focus. Set your own threshold and cooldown, choose up to eight simultaneous results, preview, then save. There are no fixed “heart” or gift tiers in the engine.
+Entitlements belong to the Twitch user who earned them, include allowed uses and expiry, and cannot be consumed through preview or another event source. Deleted or disabled rules cannot redeem. Progress and grants are session-only and reset when the app restarts. There are no fixed gift tiers or platform-specific heart/tap claims.
 
-Results available in the editor: video, audio/recording, image/GIF, plain text, four CSS effects, and a viewer-bound scrolling message entitlement. Uploaded files are copied into local app storage, so the original file is not needed afterwards. Uploads are limited to 100 MB, checked for a supported media signature, and addressed by generated IDs rather than supplied paths. Browser/codec support still matters; MP4 H.264/AAC is the recommended video format.
+The **Viewer Rewards Board** uses the same OBS source. It shows only enabled chat rules, the real threshold, cooldown, redemption command, allowed uses and expiry. Show/hide and compact controls update it immediately. Individual progress is available in the local engine state; the public board does not invent a shared progress total.
 
-**Record microphone** uses the browser's real microphone and saves WebM/Opus audio locally. Microphone permission and an actual working device are required. This path is implemented but not yet accepted on a real microphone. No voice cloning is included.
+## Your own content
 
-Example: chat command `!heart`, threshold `3`, cooldown `5`, result **Unlock scrolling viewer message**, redemption `!scroll`, uses `1`, expiry `120`. The same viewer must send three eligible messages at least five seconds apart, then `!scroll Your message` within 120 seconds. Another viewer cannot consume that permission. Preview creates no grants.
+Upload MP4/WebM/MOV video, WAV/MP3/Ogg/M4A audio, PNG/JPEG/WebP images or GIFs, up to 100 MB each. MP4 H.264/AAC is the recommended video format. Files are copied to app storage and selected by generated IDs, so their original location is no longer needed. Playback stops at the configured maximum duration (1-30 seconds). A job can contain up to eight simultaneous results.
 
-## Execution and moderation
+**Record microphone** uses MediaRecorder and saves real browser microphone input locally as WebM/Opus. It needs a working input device and browser permission. On the acceptance host this request was refused/unavailable; **real microphone recording is not accepted or claimed PASS**. The upload-video and upload-audio paths were verified through the browser and OBS. No voice cloning is included. TTS is an offline Windows system voice and is distinct from uploaded/recorded audio.
 
-- One active job with up to 30 pending jobs; all outputs in a job start together. Duration is limited to 1–30 seconds.
-- Per-viewer cooldown and a 750 ms chat burst limiter; EventSub delivery IDs are deduplicated for 10 minutes (20,000-ID cap).
-- Entitlements are tied to the viewer, rule and event source, have expiry and bounded uses, and are ignored if their rule is disabled/deleted.
-- Viewer text is length-limited, stripped of control/bidirectional characters and HTML angle brackets, then rendered with `textContent`. URLs, script/data/file schemes, Windows paths and network paths are rejected. No viewer-supplied resource path is used.
-- Binding is to `127.0.0.1`; Host and Origin checks reject browser cross-origin writes. Static routes do not expose `data/`, source files or tokens.
-- Logs omit tokens and chat body text. OBS URLs contain a local overlay capability; do not publish your personal runtime URL. Stop LiveKit when not in use.
+Rules, uploads and the stable OBS URL persist in `data/`. Keep this folder when updating. A previous config is kept as `data/config.json.backup`. Twitch access tokens are memory-only: after restarting, authorize again. Refresh the OBS Browser Source after upgrading app code. Do not run two processes against one data directory. Use `PORT` and `LIVEKIT_DATA` for isolated QA; `LIVEKIT_CLIENT_ID` can override the initial public client for an isolated install.
 
-## Tests and evidence
+## Safety and execution
+
+- One active job and up to 30 queued jobs; per-viewer cooldown and a 750 ms burst limiter.
+- EventSub delivery IDs deduplicated for 10 minutes, with a 20,000-ID cap.
+- Viewer text uses plain `textContent`, length limits, and removal of HTML delimiters, control and bidi characters. URLs, script/data/file schemes, Windows paths and network paths are rejected before entitlement consumption.
+- Viewers cannot choose a media URL or filesystem path. Uploaded file signatures are checked and media routes resolve registered IDs only.
+- Server listens on `127.0.0.1`. Host checks and same-origin write checks protect local APIs. No CORS wildcard, HTML from chat, eval, or viewer-authored script is used.
+- Twitch access tokens and chat message bodies are omitted from application logs. Private runtime data is excluded from Git. The personal OBS URL contains a local overlay capability; do not publish it.
+- Offline system TTS sends bounded text through stdin to one fixed PowerShell helper. Viewer input is never interpolated into a shell command. Generated speech is temporary.
+
+## Acceptance evidence
+
+Verified on 30 October 2026 with OBS 33.0.1:
+
+- Production Twitch OAuth and accepted `channel.chat.message` EventSub subscription.
+- Real `!wow` chat to MP4/audio on OBS with the Twitch display name.
+- Three eligible chat messages to one scrolling-message entitlement; an extra message inside cooldown did not count; earned message appeared on OBS.
+- Five eligible messages to one system-TTS entitlement; a `javascript:` payload was refused without spending the entitlement; valid speech played through OBS; a second use was denied.
+- A real disconnect/reconnect created a new EventSub session and subsequent chat still played media.
+- A real chat job queued behind another, then video and system speech started together through OBS.
+- UI video/audio upload, configuration persistence through restart, all 12 template previews on actual OBS, and STOP ALL returning the queue to zero.
+
+Live tests used the authenticated broadcaster's account as the chat participant. Separate-viewer isolation, duplicate delivery, revocation, keepalive/reconnect protocol cases and expiry are additionally tested with explicitly labelled automated fixtures. These fixtures are not presented as production Twitch events. No on-air broadcast, paid Bits, gifts or subscriptions are claimed.
+
+Run automated checks:
 
 ```sh
 npm test
 ```
 
-Tests cover schema, configurable thresholds, viewer ownership, expiry, uses, cooldown, spam, deduplication, FIFO, STOP ALL, media ranges/upload signatures, persistence and HTTP origin checks. EventSub tests use injected socket/fetch fixtures and **are not live Twitch evidence**. See the sibling `evidence/` directory in the delivered workspace for actual OBS screenshots and capture. The source repository excludes runtime data and QA directories.
+The acceptance suite has 50 passing Node tests, including isolated HTTP process restarts, media validation, viewer permissions, protocol fixtures and native Windows WAV synthesis. A separate clean project install was tested on the same Windows host; a fresh Windows VM was not tested. Actual OBS recordings and screenshot receipts are retained with the build evidence. See `QA.md` for scope and limits.
 
-## Limits and pending acceptance
+## Supported scope
 
-- Only Twitch chat commands are supported. Bits, gifted subscriptions, Channel Points, TikTok, YouTube and Facebook are not enabled.
-- Only one bundled media interaction exists at this checkpoint. The 12-template/24-variant library is deferred until GATE 1 passes.
-- TTS code exists internally as an unverified browser capability; TTS is not offered in the editor or claimed as supported in OBS. No paid TTS API is used.
-- No real Twitch events, real viewer reward E2E, microphone acceptance, final YouTube demo, public repository receipt or Devpost Submitted receipt have been obtained yet.
-- Clean install tests validate a separate local directory on this host, not a fresh Windows VM.
-- This local tool does not capture/broadcast the stream itself. Add the Browser Source to your existing OBS scene; begin a livestream only when you choose to.
+Twitch chat only. Bits, gifted subscriptions and Channel Points are not enabled. TikTok, YouTube and Facebook integrations are not implemented. The app does not start a broadcast; the streamer controls OBS. Samples are original, intentionally lightweight starters. Browser/codec and microphone-device support still apply.
 
-## Hackathon build provenance
+## Codex build provenance
 
-Created from new source on 30 October 2026 in Codex session `01a189a4-81a1-7080-9b5b-c9b32b86a8b2`, within the contest build period. No source from Chat Builds the Bridge, VIEVOT, VieCore, Shopify or another Viera product was imported. Codex directly authored the local server, engine, Twitch adapter, UI, overlay and automated tests and generated the original sample clip with FFmpeg. Runtime screenshots/recordings must be distinguished from generated sample media.
+New source created on 30 October 2026 in Codex session **01a189a4-81a1-7080-9b5b-c9b32b86a8b2**, within the contest build period. Codex directly authored the local server, engine, Twitch adapter, interface, overlay, Windows speech helper and tests, generated the original sample assets and operated the acceptance checks. No source from Chat Builds the Bridge, VIEVOT, VieCore, Shopify or another Viera product was imported.
 
-See `ASSET_LICENSES.md` and `LICENSE` for source/media licensing.
+Source and original assets are MIT licensed. See `ASSET_LICENSES.md`. Optional asset rebuild tools are Python/Pillow plus FFmpeg (`scripts/build-pack.py` and `scripts/generate-sample.ps1`); generated assets are already included.

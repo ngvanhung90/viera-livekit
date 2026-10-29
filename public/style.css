@@ -6,6 +6,89 @@
   --muted: #a9abbc;
   --accent: #c6f176;
 }
+.starters {
+  margin: 32px 0 45px;
+}
+.starter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.sample-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  overflow: hidden;
+}
+.sample-cover {
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+}
+.sample-cover span {
+  font-size: 65px;
+  line-height: 1;
+  color: var(--accent);
+}
+.sample-cover small {
+  position: absolute;
+  left: 18px;
+  bottom: 13px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #e2e0e9;
+}
+.color-0 {
+  background:
+    radial-gradient(ellipse at 80% 20%, #4c5d32, transparent 60%), #242d22;
+}
+.color-1 {
+  background:
+    radial-gradient(ellipse at 80% 20%, #625294, transparent 60%), #2d2442;
+}
+.color-2 {
+  background:
+    radial-gradient(ellipse at 80% 20%, #93556e, transparent 60%), #3e2533;
+}
+.color-3 {
+  background:
+    radial-gradient(ellipse at 80% 20%, #376a7d, transparent 60%), #1c3441;
+}
+.sample-body {
+  padding: 18px;
+}
+.sample-body h3 {
+  margin: 0;
+  font-size: 20px;
+}
+.sample-body p {
+  font-size: 12px;
+  min-height: 35px;
+}
+.sample-body select {
+  font-size: 12px;
+  margin-top: 15px;
+}
+.sample-body button {
+  font-size: 12px;
+  padding: 10px 12px;
+}
+.starters .section-title label {
+  min-width: 190px;
+}
+@media (max-width: 900px) {
+  .starter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .starter-grid {
+    grid-template-columns: 1fr;
+  }
+}
 * {
   box-sizing: border-box;
 }
@@ -88,6 +171,17 @@ h2 {
   padding: 24px;
   border-radius: 18px;
   margin-bottom: 35px;
+}
+summary {
+  cursor: pointer;
+  font-weight: 650;
+  padding: 4px 0;
+}
+.setup details {
+  margin: 12px 0;
+}
+#setup[open] > summary {
+  margin-bottom: 20px;
 }
 label {
   display: block;

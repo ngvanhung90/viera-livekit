@@ -31,7 +31,9 @@ export class TwitchAdapter {
   }
   async start(token, clientId) {
     this.stop();
+    const startGeneration = this.generation;
     const v = await this.validate(token, clientId);
+    if (startGeneration !== this.generation) return;
     Object.assign(this, { token, clientId, userId: v.user_id, login: v.login });
     this.stopped = false;
     this.attempt = 0;
@@ -158,6 +160,13 @@ export class TwitchAdapter {
       );
       this.retry.unref?.();
     });
+  }
+  async reconnect() {
+    if (!this.token) throw new Error("Connect Twitch before reconnecting");
+    const token = this.token,
+      clientId = this.clientId;
+    this.log("twitch_reconnect_requested", {});
+    await this.start(token, clientId);
   }
   stop() {
     this.stopped = true;

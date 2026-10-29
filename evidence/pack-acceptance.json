@@ -1,0 +1,206 @@
+[
+  {
+    "template": "cosmic",
+    "name": "Cosmic thank you",
+    "jobId": "921c3dd3-733f-4659-a067-a29aa25a5dd0",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:30:39.460Z",
+        "type": "overlay_playing",
+        "jobId": "921c3dd3-733f-4659-a067-a29aa25a5dd0",
+        "client": "obs-browser",
+        "details": "video; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-cosmic.png"
+  },
+  {
+    "template": "victory",
+    "name": "Victory dance",
+    "jobId": "3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:30:45.868Z",
+        "type": "overlay_playing",
+        "jobId": "3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5",
+        "client": "obs-browser",
+        "details": "video; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-victory.png"
+  },
+  {
+    "template": "applause",
+    "name": "A little applause",
+    "jobId": "e6c075fd-bf7e-4424-8f37-190d93348f4a",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:30:51.722Z",
+        "type": "overlay_playing",
+        "jobId": "e6c075fd-bf7e-4424-8f37-190d93348f4a",
+        "client": "obs-browser",
+        "details": "audio; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-applause.png"
+  },
+  {
+    "template": "boing",
+    "name": "Comic relief",
+    "jobId": "eed8b4ee-a9d1-48d3-91e8-c220dd9886ab",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:30:57.881Z",
+        "type": "overlay_playing",
+        "jobId": "eed8b4ee-a9d1-48d3-91e8-c220dd9886ab",
+        "client": "obs-browser",
+        "details": "audio; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-boing.png"
+  },
+  {
+    "template": "levelup",
+    "name": "Level unlocked",
+    "jobId": "4e013496-fb9f-441c-991d-b37e64b8530d",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:31:04.272Z",
+        "type": "overlay_playing",
+        "jobId": "4e013496-fb9f-441c-991d-b37e64b8530d",
+        "client": "obs-browser",
+        "details": "audio; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-levelup.png"
+  },
+  {
+    "template": "heartwave",
+    "name": "Heart wave",
+    "jobId": "3b1ad1fa-7561-425e-84b8-20fc59cfa648",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:31:10.101Z",
+        "type": "overlay_playing",
+        "jobId": "3b1ad1fa-7561-425e-84b8-20fc59cfa648",
+        "client": "obs-browser",
+        "details": "audio; time=0.000109; ready=4"
+      }
+    ],
+    "screenshot": "pack-heartwave.png"
+  },
+  {
+    "template": "confetti",
+    "name": "Chat confetti",
+    "jobId": "e98adfbc-8c66-4908-b169-2b16b806a452",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [],
+    "screenshot": "pack-confetti.png"
+  },
+  {
+    "template": "stars",
+    "name": "Star shower",
+    "jobId": "13d0836c-d93e-43f5-8fa5-6ade137c2b3f",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [],
+    "screenshot": "pack-stars.png"
+  },
+  {
+    "template": "pulse",
+    "name": "Hype pulse",
+    "jobId": "345de185-a404-4066-b742-7112115d7cb5",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:31:28.506Z",
+        "type": "overlay_playing",
+        "jobId": "345de185-a404-4066-b742-7112115d7cb5",
+        "client": "obs-browser",
+        "details": "audio; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-pulse.png"
+  },
+  {
+    "template": "spotlight",
+    "name": "Earn your spotlight",
+    "jobId": "1e4940e4-6462-4c7e-8bc3-74deae80977b",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [],
+    "screenshot": "pack-spotlight.png"
+  },
+  {
+    "template": "voice",
+    "name": "Your voice in the show",
+    "jobId": "7fa2f557-ea41-46a1-8ea2-7e5a41090cb8",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:31:44.542Z",
+        "type": "overlay_playing",
+        "jobId": "7fa2f557-ea41-46a1-8ea2-7e5a41090cb8",
+        "client": "obs-browser",
+        "details": "system-tts; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-voice.png"
+  },
+  {
+    "template": "welcome",
+    "name": "Community welcome",
+    "jobId": "0151c4cb-546d-42ab-a380-6ca5c3c89170",
+    "source": "preview",
+    "runtime": "OBS 33.0.1 Browser Source",
+    "pass": true,
+    "errors": [],
+    "playbackReceipts": [
+      {
+        "at": "2026-10-29T22:31:59.404Z",
+        "type": "overlay_playing",
+        "jobId": "0151c4cb-546d-42ab-a380-6ca5c3c89170",
+        "client": "obs-browser",
+        "details": "audio; time=0; ready=4"
+      }
+    ],
+    "screenshot": "pack-welcome.png"
+  }
+]

@@ -64,6 +64,32 @@ const welcome = (id) => ({
   metadata: { message_type: "session_welcome" },
   payload: { session: { id, keepalive_timeout_seconds: 10 } },
 });
+test("fixture: disconnect while validation is pending cannot reopen the socket", async () => {
+  let resolve;
+  const validation = new Promise((r) => (resolve = r));
+  const adapter = new TwitchAdapter({
+    Socket,
+    onChat: () => {},
+    log: () => {},
+    onStatus: () => {},
+    fetchImpl: async () => validation,
+  });
+  Socket.instances = [];
+  const pending = adapter.start("FIXTURE_TOKEN", "client");
+  adapter.stop();
+  resolve({
+    ok: true,
+    json: async () => ({
+      client_id: "client",
+      user_id: "123",
+      login: "fixture",
+      scopes: ["user:read:chat"],
+    }),
+  });
+  await pending;
+  assert.equal(Socket.instances.length, 0);
+  adapter.stop();
+});
 test("fixture: subscribes to chat on the authenticated broadcaster only", async () => {
   const x = setup();
   try {

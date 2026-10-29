@@ -1,0 +1,139 @@
+{"at":"2026-10-29T21:57:16.572Z","type":"app_started","port":3210}
+{"at":"2026-10-29T22:01:20.129Z","type":"queued","jobId":"1da0839f-02b9-4ad2-bd3b-256282c2ab69","ruleId":"first-wow","source":"preview"}
+{"at":"2026-10-29T22:01:20.298Z","type":"overlay_playing","jobId":"1da0839f-02b9-4ad2-bd3b-256282c2ab69","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:01:26.148Z","type":"overlay_duration_complete","jobId":"1da0839f-02b9-4ad2-bd3b-256282c2ab69","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:01:26.150Z","type":"playback_finished","jobId":"1da0839f-02b9-4ad2-bd3b-256282c2ab69","reason":"ended"}
+{"at":"2026-10-29T22:07:27.293Z","type":"app_started","port":3210}
+{"at":"2026-10-29T22:08:35.247Z","type":"queued","jobId":"5e5207f4-7576-4ae5-8e17-e74725c67766","ruleId":"4d0f5e0c-cde3-49d3-a6b1-6e4b3dd35574","source":"button"}
+{"at":"2026-10-29T22:08:35.592Z","type":"overlay_playing","jobId":"5e5207f4-7576-4ae5-8e17-e74725c67766","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:08:41.263Z","type":"overlay_duration_complete","jobId":"5e5207f4-7576-4ae5-8e17-e74725c67766","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:08:41.264Z","type":"playback_finished","jobId":"5e5207f4-7576-4ae5-8e17-e74725c67766","reason":"ended"}
+{"at":"2026-10-29T22:18:38.113Z","type":"queued","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","ruleId":"4d0f5e0c-cde3-49d3-a6b1-6e4b3dd35574","source":"button"}
+{"at":"2026-10-29T22:18:38.448Z","type":"overlay_playing","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","client":"obs-browser","details":"video; time=0.00033; ready=4"}
+{"at":"2026-10-29T22:18:38.450Z","type":"overlay_playing","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:18:40.491Z","type":"overlay_ended","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:18:44.117Z","type":"overlay_duration_complete","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:18:44.118Z","type":"playback_finished","jobId":"621ec461-89b3-40e1-9c7e-dc1411b88f09","reason":"ended"}
+{"at":"2026-10-29T22:20:05.501Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}
+{"at":"2026-10-29T22:20:14.770Z","type":"queued","jobId":"67a30869-64f3-44a1-8dcd-abba3ecac18a","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:20:14.770Z","type":"threshold_reached","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:20:14.771Z","type":"twitch_chat_received","eventId":"7jb42YIu25G_b7qVMIHXee0f6kle3rn-Utxp5_TeYHA="}
+{"at":"2026-10-29T22:20:15.102Z","type":"overlay_playing","jobId":"67a30869-64f3-44a1-8dcd-abba3ecac18a","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:20:20.778Z","type":"overlay_duration_complete","jobId":"67a30869-64f3-44a1-8dcd-abba3ecac18a","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:20:20.779Z","type":"playback_finished","jobId":"67a30869-64f3-44a1-8dcd-abba3ecac18a","reason":"ended"}
+{"at":"2026-10-29T22:20:58.291Z","type":"twitch_chat_received","eventId":"zKs2wTIqOHZ-PNsMBUm9cSXVfX3xkiKdy-xLDiHNQpg="}
+{"at":"2026-10-29T22:20:59.393Z","type":"twitch_chat_received","eventId":"RsmibhiKvnVEFQ3fKnYRWL3802PwihShgiD2jETkJ7w="}
+{"at":"2026-10-29T22:21:15.907Z","type":"twitch_chat_received","eventId":"UeazSqQbYVzTA8IRbIw2kbBMB-JFcXOytMj4XmP7nHA="}
+{"at":"2026-10-29T22:21:32.517Z","type":"threshold_reached","ruleId":"e1f0e734-f2e7-46e8-9eae-837dbc4aea35","source":"twitch-live"}
+{"at":"2026-10-29T22:21:32.518Z","type":"twitch_chat_received","eventId":"SsdXKPFI6bPeVIxjP2X-CSZ8-8PaLZNzot5pN9AqDQ8="}
+{"at":"2026-10-29T22:21:43.426Z","type":"queued","jobId":"71fadb7c-6649-47eb-ae81-41ff55019c8b","ruleId":"e1f0e734-f2e7-46e8-9eae-837dbc4aea35","source":"twitch-live"}
+{"at":"2026-10-29T22:21:43.427Z","type":"twitch_chat_received","eventId":"tXlN8qKZXzp35hatIDG2Jl26EkyLqqm-bBN5U_pNR0g="}
+{"at":"2026-10-29T22:21:49.435Z","type":"overlay_duration_complete","jobId":"71fadb7c-6649-47eb-ae81-41ff55019c8b","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:21:49.435Z","type":"playback_finished","jobId":"71fadb7c-6649-47eb-ae81-41ff55019c8b","reason":"ended"}
+{"at":"2026-10-29T22:29:31.620Z","type":"app_started","port":3210}
+{"at":"2026-10-29T22:30:39.414Z","type":"queued","jobId":"921c3dd3-733f-4659-a067-a29aa25a5dd0","ruleId":"cosmic","source":"preview"}
+{"at":"2026-10-29T22:30:39.460Z","type":"overlay_playing","jobId":"921c3dd3-733f-4659-a067-a29aa25a5dd0","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:30:45.429Z","type":"overlay_duration_complete","jobId":"921c3dd3-733f-4659-a067-a29aa25a5dd0","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:30:45.430Z","type":"playback_finished","jobId":"921c3dd3-733f-4659-a067-a29aa25a5dd0","reason":"ended"}
+{"at":"2026-10-29T22:30:45.542Z","type":"queued","jobId":"3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5","ruleId":"victory","source":"preview"}
+{"at":"2026-10-29T22:30:45.868Z","type":"overlay_playing","jobId":"3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:30:51.557Z","type":"overlay_duration_complete","jobId":"3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:30:51.558Z","type":"playback_finished","jobId":"3ce4e5cc-c9dd-41a9-9b0c-71b57d9656c5","reason":"ended"}
+{"at":"2026-10-29T22:30:51.701Z","type":"queued","jobId":"e6c075fd-bf7e-4424-8f37-190d93348f4a","ruleId":"applause","source":"preview"}
+{"at":"2026-10-29T22:30:51.722Z","type":"overlay_playing","jobId":"e6c075fd-bf7e-4424-8f37-190d93348f4a","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:30:53.763Z","type":"overlay_ended","jobId":"e6c075fd-bf7e-4424-8f37-190d93348f4a","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:30:57.708Z","type":"overlay_duration_complete","jobId":"e6c075fd-bf7e-4424-8f37-190d93348f4a","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:30:57.708Z","type":"playback_finished","jobId":"e6c075fd-bf7e-4424-8f37-190d93348f4a","reason":"ended"}
+{"at":"2026-10-29T22:30:57.864Z","type":"queued","jobId":"eed8b4ee-a9d1-48d3-91e8-c220dd9886ab","ruleId":"boing","source":"preview"}
+{"at":"2026-10-29T22:30:57.881Z","type":"overlay_playing","jobId":"eed8b4ee-a9d1-48d3-91e8-c220dd9886ab","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:30:59.922Z","type":"overlay_ended","jobId":"eed8b4ee-a9d1-48d3-91e8-c220dd9886ab","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:31:03.867Z","type":"overlay_duration_complete","jobId":"eed8b4ee-a9d1-48d3-91e8-c220dd9886ab","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:03.867Z","type":"playback_finished","jobId":"eed8b4ee-a9d1-48d3-91e8-c220dd9886ab","reason":"ended"}
+{"at":"2026-10-29T22:31:03.946Z","type":"queued","jobId":"4e013496-fb9f-441c-991d-b37e64b8530d","ruleId":"levelup","source":"preview"}
+{"at":"2026-10-29T22:31:04.272Z","type":"overlay_playing","jobId":"4e013496-fb9f-441c-991d-b37e64b8530d","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:31:06.313Z","type":"overlay_ended","jobId":"4e013496-fb9f-441c-991d-b37e64b8530d","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:31:09.955Z","type":"overlay_duration_complete","jobId":"4e013496-fb9f-441c-991d-b37e64b8530d","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:09.955Z","type":"playback_finished","jobId":"4e013496-fb9f-441c-991d-b37e64b8530d","reason":"ended"}
+{"at":"2026-10-29T22:31:10.083Z","type":"queued","jobId":"3b1ad1fa-7561-425e-84b8-20fc59cfa648","ruleId":"heartwave","source":"preview"}
+{"at":"2026-10-29T22:31:10.101Z","type":"overlay_playing","jobId":"3b1ad1fa-7561-425e-84b8-20fc59cfa648","client":"obs-browser","details":"audio; time=0.000109; ready=4"}
+{"at":"2026-10-29T22:31:12.141Z","type":"overlay_ended","jobId":"3b1ad1fa-7561-425e-84b8-20fc59cfa648","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:31:16.089Z","type":"overlay_duration_complete","jobId":"3b1ad1fa-7561-425e-84b8-20fc59cfa648","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:16.089Z","type":"playback_finished","jobId":"3b1ad1fa-7561-425e-84b8-20fc59cfa648","reason":"ended"}
+{"at":"2026-10-29T22:31:16.231Z","type":"queued","jobId":"e98adfbc-8c66-4908-b169-2b16b806a452","ruleId":"confetti","source":"preview"}
+{"at":"2026-10-29T22:31:22.234Z","type":"overlay_duration_complete","jobId":"e98adfbc-8c66-4908-b169-2b16b806a452","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:22.235Z","type":"playback_finished","jobId":"e98adfbc-8c66-4908-b169-2b16b806a452","reason":"ended"}
+{"at":"2026-10-29T22:31:22.389Z","type":"queued","jobId":"13d0836c-d93e-43f5-8fa5-6ade137c2b3f","ruleId":"stars","source":"preview"}
+{"at":"2026-10-29T22:31:28.394Z","type":"overlay_duration_complete","jobId":"13d0836c-d93e-43f5-8fa5-6ade137c2b3f","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:28.395Z","type":"playback_finished","jobId":"13d0836c-d93e-43f5-8fa5-6ade137c2b3f","reason":"ended"}
+{"at":"2026-10-29T22:31:28.491Z","type":"queued","jobId":"345de185-a404-4066-b742-7112115d7cb5","ruleId":"pulse","source":"preview"}
+{"at":"2026-10-29T22:31:28.506Z","type":"overlay_playing","jobId":"345de185-a404-4066-b742-7112115d7cb5","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:31:30.548Z","type":"overlay_ended","jobId":"345de185-a404-4066-b742-7112115d7cb5","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:31:34.499Z","type":"overlay_duration_complete","jobId":"345de185-a404-4066-b742-7112115d7cb5","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:34.500Z","type":"playback_finished","jobId":"345de185-a404-4066-b742-7112115d7cb5","reason":"ended"}
+{"at":"2026-10-29T22:31:34.565Z","type":"queued","jobId":"1e4940e4-6462-4c7e-8bc3-74deae80977b","ruleId":"spotlight","source":"preview"}
+{"at":"2026-10-29T22:31:43.579Z","type":"overlay_duration_complete","jobId":"1e4940e4-6462-4c7e-8bc3-74deae80977b","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:43.580Z","type":"playback_finished","jobId":"1e4940e4-6462-4c7e-8bc3-74deae80977b","reason":"ended"}
+{"at":"2026-10-29T22:31:43.830Z","type":"queued","jobId":"7fa2f557-ea41-46a1-8ea2-7e5a41090cb8","ruleId":"voice","source":"preview"}
+{"at":"2026-10-29T22:31:44.542Z","type":"overlay_playing","jobId":"7fa2f557-ea41-46a1-8ea2-7e5a41090cb8","client":"obs-browser","details":"system-tts; time=0; ready=4"}
+{"at":"2026-10-29T22:31:50.344Z","type":"overlay_ended","jobId":"7fa2f557-ea41-46a1-8ea2-7e5a41090cb8","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:31:59.214Z","type":"overlay_duration_complete","jobId":"7fa2f557-ea41-46a1-8ea2-7e5a41090cb8","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:31:59.215Z","type":"playback_finished","jobId":"7fa2f557-ea41-46a1-8ea2-7e5a41090cb8","reason":"ended"}
+{"at":"2026-10-29T22:31:59.389Z","type":"queued","jobId":"0151c4cb-546d-42ab-a380-6ca5c3c89170","ruleId":"welcome","source":"preview"}
+{"at":"2026-10-29T22:31:59.404Z","type":"overlay_playing","jobId":"0151c4cb-546d-42ab-a380-6ca5c3c89170","client":"obs-browser","details":"audio; time=0; ready=4"}
+{"at":"2026-10-29T22:32:01.445Z","type":"overlay_ended","jobId":"0151c4cb-546d-42ab-a380-6ca5c3c89170","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:32:05.405Z","type":"overlay_duration_complete","jobId":"0151c4cb-546d-42ab-a380-6ca5c3c89170","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:32:05.406Z","type":"playback_finished","jobId":"0151c4cb-546d-42ab-a380-6ca5c3c89170","reason":"ended"}
+{"at":"2026-10-29T22:33:34.271Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}
+{"at":"2026-10-29T22:35:04.449Z","type":"twitch_chat_received","eventId":"TInnWK5WURWNJX_WrSvyzDomrBtONJKLmXlN_TJk5zs="}
+{"at":"2026-10-29T22:35:06.638Z","type":"twitch_chat_received","eventId":"SQuujFW-rXVwFs0--OqXdGVuEp3HgkcsE7QSdrY5QFg="}
+{"at":"2026-10-29T22:35:08.654Z","type":"twitch_chat_received","eventId":"hlBoZhR9kuS6989vOsQLptOmASEyXd4pLMr3vgQOF0Y="}
+{"at":"2026-10-29T22:35:10.841Z","type":"twitch_chat_received","eventId":"y8_mu261Dn63mbv1AdKyO5kPXGrzcw6OSJxXGa8v4VE="}
+{"at":"2026-10-29T22:35:13.084Z","type":"threshold_reached","ruleId":"ae4ba5de-5a8c-4229-9318-0b81e49564b0","source":"twitch-live"}
+{"at":"2026-10-29T22:35:13.085Z","type":"twitch_chat_received","eventId":"1yKoN9953mtIGsloQLtVtLs_aZP3fgNfxjC2YX4entg="}
+{"at":"2026-10-29T22:35:27.024Z","type":"twitch_chat_received","eventId":"5ik5kjxRMTDqCZJ3_lTwDPOmotrSBrAxlRDIWtx7enI="}
+{"at":"2026-10-29T22:35:39.123Z","type":"queued","jobId":"e8972843-20af-4efa-be22-23c2a5ea1242","ruleId":"ae4ba5de-5a8c-4229-9318-0b81e49564b0","source":"twitch-live"}
+{"at":"2026-10-29T22:35:39.135Z","type":"twitch_chat_received","eventId":"JH-1q3yvLuAFL7CI2Uu95Q6sDScPXbDY3evMjbRpxMg="}
+{"at":"2026-10-29T22:35:39.853Z","type":"overlay_playing","jobId":"e8972843-20af-4efa-be22-23c2a5ea1242","client":"obs-browser","details":"system-tts; time=0; ready=4"}
+{"at":"2026-10-29T22:35:44.854Z","type":"overlay_ended","jobId":"e8972843-20af-4efa-be22-23c2a5ea1242","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:35:54.527Z","type":"overlay_duration_complete","jobId":"e8972843-20af-4efa-be22-23c2a5ea1242","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:35:54.528Z","type":"playback_finished","jobId":"e8972843-20af-4efa-be22-23c2a5ea1242","reason":"ended"}
+{"at":"2026-10-29T22:36:31.729Z","type":"twitch_reconnect_requested"}
+{"at":"2026-10-29T22:36:33.683Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}
+{"at":"2026-10-29T22:36:41.210Z","type":"queued","jobId":"00a444b2-ec6e-4e06-8136-0fd7ba5a3f97","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:36:41.210Z","type":"threshold_reached","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:36:41.211Z","type":"twitch_chat_received","eventId":"qMeeBqh9Dz2KufnGOsaLx1_83jLZTZKlw_NXKf1I_w0="}
+{"at":"2026-10-29T22:36:41.541Z","type":"overlay_playing","jobId":"00a444b2-ec6e-4e06-8136-0fd7ba5a3f97","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:36:43.331Z","type":"twitch_chat_received","eventId":"tIZzvtJZHbHzN0t30d6gBspQTY-y2Aj09_APmFcACVk="}
+{"at":"2026-10-29T22:36:47.216Z","type":"overlay_duration_complete","jobId":"00a444b2-ec6e-4e06-8136-0fd7ba5a3f97","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:36:47.216Z","type":"playback_finished","jobId":"00a444b2-ec6e-4e06-8136-0fd7ba5a3f97","reason":"ended"}
+{"at":"2026-10-29T22:44:42.662Z","type":"queued","jobId":"48ea3f63-10d4-4502-853a-f405a54ca71b","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:44:42.663Z","type":"threshold_reached","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T22:44:42.663Z","type":"twitch_chat_received","eventId":"hdQKjEeycSIsktbvTDPdXzN_f4xjxAzBTwzZYeWWyrk="}
+{"at":"2026-10-29T22:44:42.990Z","type":"overlay_playing","jobId":"48ea3f63-10d4-4502-853a-f405a54ca71b","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:44:44.702Z","type":"queued","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","ruleId":"c54788d3-b147-43db-8301-96394cb25483","source":"twitch-live"}
+{"at":"2026-10-29T22:44:44.703Z","type":"threshold_reached","ruleId":"c54788d3-b147-43db-8301-96394cb25483","source":"twitch-live"}
+{"at":"2026-10-29T22:44:44.703Z","type":"twitch_chat_received","eventId":"WbRQRiPRr3vqnsTkVgvop30wr7PykNSXpip-kNeVElE="}
+{"at":"2026-10-29T22:44:48.671Z","type":"overlay_duration_complete","jobId":"48ea3f63-10d4-4502-853a-f405a54ca71b","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:44:48.672Z","type":"playback_finished","jobId":"48ea3f63-10d4-4502-853a-f405a54ca71b","reason":"ended"}
+{"at":"2026-10-29T22:44:49.134Z","type":"overlay_playing","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","client":"obs-browser","details":"video; time=0.000325; ready=4"}
+{"at":"2026-10-29T22:44:49.135Z","type":"overlay_playing","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","client":"obs-browser","details":"system-tts; time=0; ready=4"}
+{"at":"2026-10-29T22:44:55.195Z","type":"overlay_ended","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","client":"obs-browser","details":"video"}
+{"at":"2026-10-29T22:44:56.378Z","type":"overlay_ended","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","client":"obs-browser","details":"audio"}
+{"at":"2026-10-29T22:44:59.124Z","type":"overlay_duration_complete","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:44:59.125Z","type":"playback_finished","jobId":"c75cae6f-b11a-4637-9156-0473b26cbb02","reason":"ended"}
+{"at":"2026-10-29T22:45:19.557Z","type":"queued","jobId":"79b5f622-8da6-4ad2-9df7-86bbf6b8a382","ruleId":"first-wow","source":"preview"}
+{"at":"2026-10-29T22:45:19.578Z","type":"overlay_playing","jobId":"79b5f622-8da6-4ad2-9df7-86bbf6b8a382","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:45:21.620Z","type":"queued","jobId":"74153997-1634-4745-a177-292fb1b7e26d","ruleId":"first-wow","source":"preview"}
+{"at":"2026-10-29T22:45:23.666Z","type":"queued","jobId":"4325ec9a-8673-4dc1-8854-09bdce4795c5","ruleId":"first-wow","source":"preview"}
+{"at":"2026-10-29T22:45:25.566Z","type":"overlay_duration_complete","jobId":"79b5f622-8da6-4ad2-9df7-86bbf6b8a382","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:45:25.567Z","type":"playback_finished","jobId":"79b5f622-8da6-4ad2-9df7-86bbf6b8a382","reason":"ended"}
+{"at":"2026-10-29T22:45:25.582Z","type":"overlay_playing","jobId":"74153997-1634-4745-a177-292fb1b7e26d","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:45:31.575Z","type":"overlay_duration_complete","jobId":"74153997-1634-4745-a177-292fb1b7e26d","client":"obs-browser","details":""}
+{"at":"2026-10-29T22:45:31.576Z","type":"playback_finished","jobId":"74153997-1634-4745-a177-292fb1b7e26d","reason":"ended"}
+{"at":"2026-10-29T22:45:31.595Z","type":"overlay_playing","jobId":"4325ec9a-8673-4dc1-8854-09bdce4795c5","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T22:45:33.587Z","type":"stop_all"}
+{"at":"2026-10-29T22:51:06.835Z","type":"twitch_socket_error"}
+{"at":"2026-10-29T22:51:26.850Z","type":"twitch_socket_error"}
+{"at":"2026-10-29T22:51:48.869Z","type":"twitch_socket_error"}
+{"at":"2026-10-29T22:52:14.888Z","type":"twitch_socket_error"}
+{"at":"2026-10-29T22:52:32.390Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}

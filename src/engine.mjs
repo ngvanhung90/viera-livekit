@@ -108,6 +108,8 @@ export function validateRule(r, assets) {
       ),
     };
   });
+  if (actions.filter((a) => a.type === "tts").length > 1)
+    throw new Error("Use at most one system voice per interaction");
   return {
     id,
     name,
@@ -191,7 +193,9 @@ export class Engine {
     this.emit("play", this.active);
     this.timer = setTimeout(
       () => this.finish(this.active?.id, "timeout"),
-      (this.active.duration + 4) * 1000,
+      (this.active.duration +
+        (this.active.actions.some((a) => a.type === "tts") ? 10 : 4)) *
+        1000,
     );
     this.timer.unref?.();
   }
@@ -211,7 +215,27 @@ export class Engine {
     this.record("stop_all");
   }
   preview(rule, viewer = "Streamer") {
-    return this.enqueue(rule, viewer, "preview");
+    const grants = rule.actions.filter((a) => a.type === "entitlement");
+    const actions = rule.actions.filter((a) => a.type !== "entitlement");
+    if (grants.length)
+      actions.push({
+        type: "text",
+        text:
+          "Preview: unlock " +
+          grants
+            .map(
+              (a) =>
+                `${a.command} your message, ${a.uses} use(s), ${a.ttl}s expiry`,
+            )
+            .join("; "),
+      });
+    if (grants.some((a) => a.result === "tts"))
+      actions.push({
+        type: "tts",
+        text: "This is a Windows system voice preview. Viewers can earn a spoken message.",
+        volume: 0.7,
+      });
+    return this.enqueue({ ...rule, actions }, viewer, "preview");
   }
   manual(id, source = "button") {
     const r = this.rules.find((r) => r.id === id && r.enabled);

@@ -15,8 +15,13 @@ import { randomBytes, randomUUID } from "node:crypto";
 import { WebSocketServer } from "ws";
 import { Engine, validateRule, safeText } from "./engine.mjs";
 import { TwitchAdapter } from "./twitch.mjs";
+import { LocalSpeech } from "./tts.mjs";
+import { templates, recipes } from "./templates.mjs";
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
+const VERSION = JSON.parse(
+  readFileSync(path.join(ROOT, "package.json")),
+).version;
 const DATA = process.env.LIVEKIT_DATA
   ? path.resolve(process.env.LIVEKIT_DATA)
   : path.join(ROOT, "data");
@@ -43,7 +48,8 @@ let config = existsSync(configFile)
   ? JSON.parse(readFileSync(configFile))
   : {
       version: 1,
-      clientId: "",
+      clientId:
+        process.env.LIVEKIT_CLIENT_ID ?? "iuillny96jy5i6etws4lyub1odbfnj",
       board: { visible: true, compact: false },
       assets: [],
       rules: [
@@ -75,7 +81,35 @@ const broadcast = (type, data) => {
   for (const peer of peers)
     if (peer.readyState === 1) peer.send(JSON.stringify({ type, data }));
 };
-const engine = new Engine({ rules: config.rules, emit: broadcast, log });
+const speech = new LocalSpeech(DATA);
+async function deliver(job) {
+  try {
+    const actions = [];
+    for (const action of job.actions) {
+      if (engine.active?.id !== job.id) return;
+      if (action.type === "tts") {
+        const assetId = await speech.generate(action.text);
+        actions.push({
+          type: "audio",
+          assetId,
+          volume: action.volume ?? 0.7,
+          systemVoice: true,
+        });
+      } else actions.push(action);
+    }
+    if (engine.active?.id === job.id) broadcast("play", { ...job, actions });
+  } catch {
+    log("tts_error", { jobId: job.id });
+    engine.finish(job.id, "system_tts_error");
+    broadcast("notice", { message: "System TTS failed; check Windows voices" });
+  }
+}
+const engine = new Engine({
+  rules: config.rules,
+  emit: (type, data) =>
+    type === "play" ? void deliver(data) : broadcast(type, data),
+  log,
+});
 const twitch = new TwitchAdapter({
   onChat: (e) => engine.chat(e),
   log,
@@ -86,12 +120,13 @@ let deviceTimer = null;
 let overlayCount = 0;
 function state() {
   return {
+    version: VERSION,
     config: { ...config, assets: allAssets() },
     engine: engine.state(),
     twitch: twitch.status,
     overlayCount,
     overlayUrl: `${ORIGIN}/overlay?key=${overlayKey}`,
-    gate: "GATE 1 — awaiting verified Twitch / OBS playback",
+    capabilities: { systemTts: process.platform === "win32" },
   };
 }
 const json = (res, status, value) => {
@@ -258,6 +293,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
       if (url.pathname === "/api/stop") {
+        speech.stop();
         engine.stop();
         json(res, 200, { stopped: true });
         return;
@@ -337,6 +373,11 @@ const server = http.createServer(async (req, res) => {
         });
         return;
       }
+      if (url.pathname === "/api/twitch/reconnect") {
+        await twitch.reconnect();
+        json(res, 200, { reconnecting: true });
+        return;
+      }
       if (url.pathname === "/api/twitch/disconnect") {
         twitch.stop();
         clearTimeout(deviceTimer);
@@ -368,22 +409,29 @@ const server = http.createServer(async (req, res) => {
       json(res, 200, state());
       return;
     }
+    if (url.pathname === "/api/library") {
+      json(res, 200, { templates, recipes });
+      return;
+    }
     if (url.pathname === "/api/health") {
-      json(res, 200, { ok: true, app: "Viera LiveKit", version: "0.1.0" });
+      json(res, 200, { ok: true, app: "Viera LiveKit", version: VERSION });
       return;
     }
     let file;
     if (url.pathname.startsWith("/media/")) {
       const id = url.pathname.slice(7);
-      const asset = allAssets().find((a) => a.id === id);
+      const asset =
+        allAssets().find((a) => a.id === id) || speech.assets.get(id);
       if (!asset) {
         res.writeHead(404).end();
         return;
       }
-      file = path.join(
-        asset.custom ? path.join(DATA, "media") : path.join(ROOT, "assets"),
-        asset.file,
-      );
+      file =
+        asset.target ||
+        path.join(
+          asset.custom ? path.join(DATA, "media") : path.join(ROOT, "assets"),
+          asset.file,
+        );
     } else {
       const routes = {
         "/": "index.html",
@@ -491,6 +539,7 @@ server.listen(PORT, "127.0.0.1", () => {
   console.log(`Viera LiveKit ready: ${ORIGIN}`);
 });
 process.on("SIGINT", () => {
+  speech.stop();
   engine.stop();
   twitch.stop();
   server.close();

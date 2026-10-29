@@ -36,6 +36,10 @@ function render(s) {
     : "○ Twitch disconnected";
   $("#twitch-detail").textContent =
     `${s.twitch.state} · ${s.twitch.realChats} real chat event(s)`;
+  $("#connect").disabled = s.twitch.connected;
+  if (s.twitch.connected)
+    $("#oauth-status").textContent =
+      "Authorized with user:read:chat. Tokens stay in memory.";
   $("#queue-status").textContent = s.engine.active
     ? `Playing: ${s.engine.active.name} · ${s.engine.active.source} · ${s.engine.queued} queued`
     : `Queue idle · ${s.engine.queued} queued`;
@@ -88,6 +92,11 @@ function render(s) {
 }
 $("#stop").onclick = guarded(() => api("/api/stop", {}));
 $("#disconnect").onclick = guarded(() => api("/api/twitch/disconnect", {}));
+const reconnectButton = document.createElement("button");
+reconnectButton.className = "quiet";
+reconnectButton.textContent = "Reconnect Twitch";
+reconnectButton.onclick = guarded(() => api("/api/twitch/reconnect", {}));
+$("#disconnect").after(reconnectButton);
 $("#connect").onclick = guarded(async () => {
   await api("/api/settings", { clientId: $("#client-id").value.trim() });
   const d = await api("/api/twitch/connect", {});
@@ -135,6 +144,7 @@ function resultRow(action = { type: "text", text: "{viewer}, thank you!" }) {
     ["audio", "Play audio / recording"],
     ["image", "Show image / GIF"],
     ["text", "Show text"],
+    ["tts", "Speak with Windows system voice"],
     ["effect", "Overlay effect"],
     ["entitlement", "Unlock scrolling viewer message"],
   ])
@@ -171,12 +181,15 @@ function resultRow(action = { type: "text", text: "{viewer}, thank you!" }) {
       volume.setAttribute("aria-label", "Volume");
       fields.append(volume);
     }
-    if (t === "text") {
+    if (t === "text" || t === "tts") {
       const input = document.createElement("input");
       input.value = action.text || "{viewer}, thank you!";
       input.maxLength = 200;
       input.className = "result-text";
-      input.setAttribute("aria-label", "Overlay text");
+      input.setAttribute(
+        "aria-label",
+        t === "tts" ? "System voice text" : "Overlay text",
+      );
       fields.append(input);
     }
     if (t === "effect") {
@@ -189,6 +202,15 @@ function resultRow(action = { type: "text", text: "{viewer}, thank you!" }) {
       fields.append(select);
     }
     if (t === "entitlement") {
+      const result = document.createElement("select");
+      result.className = "grant-result";
+      result.setAttribute("aria-label", "Unlocked viewer action");
+      result.append(
+        option("text", "Scrolling text"),
+        option("tts", "Windows system TTS"),
+      );
+      result.value = action.result || "text";
+      fields.append(result);
       for (const [cls, label, value, kind, min, max] of [
         [
           "redeem-command",
@@ -213,7 +235,7 @@ function resultRow(action = { type: "text", text: "{viewer}, thank you!" }) {
       }
       const hint = document.createElement("p");
       hint.textContent =
-        "Only the viewer who earned it can redeem. TTS is not enabled until voice playback is verified in OBS.";
+        "Only the viewer who earned it can redeem. TTS uses a Windows system voice, not the streamer's recorded voice.";
       fields.append(hint);
     }
   };
@@ -230,14 +252,14 @@ function readRule() {
     const get = (s) => row.querySelector(s)?.value;
     return ["video", "audio", "image"].includes(type)
       ? { type, assetId: get(".asset"), volume: Number(get(".volume")) }
-      : type === "text"
+      : type === "text" || type === "tts"
         ? { type, text: get(".result-text") }
         : type === "effect"
           ? { type, effect: get(".effect") }
           : {
               type,
               command: get(".redeem-command").trim().toLowerCase(),
-              result: "text",
+              result: get(".grant-result"),
               uses: Number(get(".uses")),
               ttl: Number(get(".ttl")),
             };
@@ -336,9 +358,20 @@ $("#record").onclick = guarded(async () => {
     throw new Error(
       "Microphone recording unavailable. Upload an audio file instead.",
     );
-  recordStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  $("#record").disabled = true;
+  $("#record-status").textContent =
+    "Waiting for microphone permission in your browser…";
+  try {
+    recordStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  } catch {
+    $("#record").disabled = false;
+    $("#record-status").textContent =
+      "Microphone unavailable or denied. You can upload an audio file.";
+    throw new Error("Microphone unavailable or permission denied");
+  }
   if (!editor.open) {
     recordStream.getTracks().forEach((t) => t.stop());
+    $("#record").disabled = false;
     return;
   }
   const mime = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
@@ -440,6 +473,105 @@ async function refresh() {
   }
 }
 await refresh();
+const starterSection = document.createElement("section");
+starterSection.className = "starters";
+starterSection.innerHTML =
+  '<div class="section-title"><div><span class="eyebrow">START WITH A MOMENT</span><h2>Starter library</h2><p id="pack-count"></p></div><label>Explore<select id="category-filter"><option value="all">All moments</option></select></label></div><div id="starter-grid" class="starter-grid"></div>';
+$("#library").parentElement.before(starterSection);
+async function renderStarters() {
+  const pack = await (await fetch("/api/library")).json();
+  $("#pack-count").textContent =
+    `${pack.templates.length} ready-to-play starters · ${pack.recipes.length} configurable recipes · original media included`;
+  const filter = $("#category-filter");
+  for (const category of new Set(pack.templates.map((t) => t.category)))
+    filter.append(option(category, category));
+  const draw = () => {
+    const grid = $("#starter-grid");
+    grid.replaceChildren();
+    for (const [i, t] of pack.templates.entries()) {
+      if (filter.value !== "all" && filter.value !== t.category) continue;
+      const card = document.createElement("article");
+      card.className = "sample-card";
+      const cover = document.createElement("div");
+      cover.className = "sample-cover color-" + (i % 4);
+      const icon = document.createElement("span");
+      icon.textContent = t.actions.some((a) => a.type === "video")
+        ? "▶"
+        : t.actions.some((a) => a.type === "entitlement")
+          ? "↗"
+          : t.actions.some((a) => a.type === "audio")
+            ? "♫"
+            : "✦";
+      cover.append(icon);
+      const kind = document.createElement("small");
+      kind.textContent = t.category.toUpperCase();
+      cover.append(kind);
+      card.append(cover);
+      const body = document.createElement("div");
+      body.className = "sample-body";
+      const h = document.createElement("h3");
+      h.textContent = t.name;
+      body.append(h);
+      const desc = document.createElement("p");
+      desc.textContent = t.actions
+        .map((a) =>
+          a.type === "entitlement"
+            ? `Unlock ${a.command}`
+            : a.type === "video"
+              ? "Original MP4"
+              : a.type === "audio"
+                ? "Original audio"
+                : a.type,
+        )
+        .join(" + ");
+      body.append(desc);
+      const actions = document.createElement("div");
+      actions.className = "card-actions";
+      for (const [label, fn] of [
+        ["▶ Preview", () => api("/api/preview", { rule: t })],
+        [
+          "Use & customize",
+          () => openEditor({ ...structuredClone(t), id: null }),
+        ],
+      ]) {
+        const b = document.createElement("button");
+        b.textContent = label;
+        b.onclick = guarded(fn);
+        if (label.startsWith("Use")) b.className = "quiet";
+        actions.append(b);
+      }
+      body.append(actions);
+      const variants = document.createElement("select");
+      variants.setAttribute("aria-label", t.name + " recipe");
+      variants.append(option("", "Choose a recipe…"));
+      for (const r of pack.recipes.filter((r) => r.recipeOf === t.id))
+        variants.append(option(r.id, r.name));
+      variants.onchange = () => {
+        const r = pack.recipes.find((r) => r.id === variants.value);
+        if (r) openEditor({ ...structuredClone(r), id: null });
+        variants.value = "";
+      };
+      body.append(variants);
+      card.append(body);
+      grid.append(card);
+    }
+  };
+  filter.onchange = draw;
+  draw();
+}
+renderStarters().catch((e) =>
+  notice("Starter library unavailable: " + e.message),
+);
+const popout = document.createElement("button");
+popout.className = "quiet";
+popout.textContent = "Open studio window";
+popout.onclick = () =>
+  window.open(
+    location.origin,
+    "VieraLiveKitStudio",
+    "popup=yes,width=1280,height=900",
+  );
+document.querySelector("footer").append(document.createElement("br"), popout);
 setInterval(refresh, 1200);
 document.addEventListener("keydown", (e) => {
   if (editor.open || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return;

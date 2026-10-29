@@ -56,7 +56,7 @@ function play(job) {
         el.addEventListener("playing", () =>
           receipt(
             "playing",
-            `${a.type}; time=${el.currentTime}; ready=${el.readyState}`,
+            `${a.systemVoice ? "system-tts" : a.type}; time=${el.currentTime}; ready=${el.readyState}`,
           ),
         );
         el.addEventListener("ended", () => receipt("ended", a.type));
@@ -74,6 +74,8 @@ function play(job) {
     if (a.type === "text") {
       const el = document.createElement("div");
       el.className = "message" + (job.actions.length === 1 ? " scroll" : "");
+      if (job.actions.length === 1)
+        el.style.animationDuration = job.duration + "s";
       el.textContent = a.text;
       stage.append(el);
     }
