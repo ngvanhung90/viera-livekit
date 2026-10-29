@@ -4,7 +4,7 @@ The production Twitch channel chat was used with the broadcaster's account as th
 
 | Check | Result and method |
 | --- | --- |
-| Clean project install | Initial separate-directory npm ci and test passed on this Windows host; fresh OS VM not tested. Final clean Git clone check is recorded separately in the delivery report. |
+| Clean project install | PASS: independent GitHub clone at 17792791d2e1509eb0b4cc03ee36ccbdd2cd2a66, npm ci and all 50 tests on this Windows host. Fresh OS VM not tested. |
 | README startup | PASS: npm start, local health endpoint and browser UI |
 | Twitch OAuth / EventSub | PASS: public device OAuth, user:read:chat, accepted production channel.chat.message subscription |
 | Real chat to OBS | PASS: !wow event queued 67a30869-64f3-44a1-8dcd-abba3ecac18a and obs-browser video playback receipt |
@@ -19,6 +19,7 @@ The production Twitch channel chat was used with the broadcaster's account as th
 | Restart persistence | PASS: configuration, uploaded bytes and stable OBS URL retained through isolated process restarts; primary app also restarted with its custom rules/media preserved |
 | Token-free sample pack | PASS: all 12 templates ran on actual OBS preview while Twitch was disconnected; 24 additional recipes validate against the same engine |
 | Fixture labelling | PASS: tests name fixture cases explicitly; runtime previews carry source=preview and a visible PREVIEW label |
+| Final 1.0.0 runtime | PASS: restart retained five rules and thirteen registered assets; production OAuth reauthorized, new EventSub subscription accepted and real !wow played on OBS in job 6968d5ad-efd3-427f-9925-1b2a43e8d265 |
 
 ## Extra checks and limits
 

@@ -62,6 +62,8 @@ Rules, uploads and the stable OBS URL persist in `data/`. Keep this folder when 
 
 ## Acceptance evidence
 
+Watch the [2 minute 24 second demo](https://www.youtube.com/watch?v=F2q4-j_N6rQ), assembled from actual app, production Twitch chat and OBS captures. Narration uses Windows system TTS; the reward speech excerpt is actual OBS audio.
+
 Verified on 30 October 2026 with OBS 33.0.1:
 
 - Production Twitch OAuth and accepted `channel.chat.message` EventSub subscription.

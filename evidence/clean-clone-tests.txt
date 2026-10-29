@@ -1,0 +1,63 @@
+
+> viera-livekit@1.0.0 test
+> node --test tests/*.test.mjs
+
+✔ custom thresholds earn only at the configured value (1.7833ms)
+✔ entitlements are bound to the earning viewer (0.4566ms)
+✔ uses are consumed exactly once (1.5794ms)
+✔ expired entitlements cannot be redeemed (0.242ms)
+✔ duplicate EventSub delivery does not increment threshold (0.2939ms)
+✔ preview never grants viewer entitlements (0.2586ms)
+✔ fixture grants cannot be spent by a live viewer (0.1515ms)
+✔ cooldown prevents rapid counting across separate event IDs (0.2667ms)
+✔ viewer rate limit blocks bursts across commands (0.2398ms)
+✔ different viewers keep independent progress (0.405ms)
+✔ disabled reward cannot issue or redeem (0.2209ms)
+✔ disabling a rule invalidates outstanding redemption (0.2656ms)
+✔ FIFO preserves media order and a stale completion cannot skip active playback (0.5531ms)
+✔ STOP ALL clears current playback and pending jobs (0.2236ms)
+✔ queue is bounded at thirty pending jobs (0.2948ms)
+✔ malicious URL does not spend entitlement (0.1603ms)
+✔ viewer text is plain sanitized text with no HTML delimiters (0.1057ms)
+✔ viewer URL and filesystem payloads are refused (0.2705ms)
+✔ schema rejects unknown platform and result types (0.1289ms)
+✔ schema refuses arbitrary file paths and mismatched media types (0.1043ms)
+✔ schema permits streamer defined commands and thresholds (0.0526ms)
+✔ schema bounds duration, cooldown, grants and volume (0.1773ms)
+✔ multiple outputs share one job (0.123ms)
+✔ button cooldown applies independently of preview (0.1495ms)
+✔ all 12 starters and 24 recipes validate against shipped media and produce preview output (6.4205ms)
+✔ every shipped asset exists and has the expected media signature (13.7386ms)
+▶ isolated HTTP application checks (no Twitch credentials)
+  ✔ starts with a playable bundled MP4 and no token (8.8029ms)
+  ✔ OBS can request media byte ranges and HEAD (6.4527ms)
+  ✔ invalid range returns 416 instead of crashing (1.3207ms)
+  ✔ cross-origin writes are blocked (6.2455ms)
+  ✔ private config and source code are not static routes (3.7457ms)
+  ✔ a fake media file is rejected by its signature (2.6976ms)
+  ✔ upload stores original media under a generated ID (28.4339ms)
+  ✔ streamer can save custom multi-output rules without JSON editing (4.0654ms)
+  ✔ unsupported Twitch events are refused (1.5578ms)
+  ✔ configuration, media and OBS URL survive process restart (148.4259ms)
+  ✔ delete updates configuration and preserves a rollback copy (4.2683ms)
+  ✔ OAuth requires registered public client ID (2.5348ms)
+  ✔ STOP ALL works without Twitch (3.9997ms)
+✔ isolated HTTP application checks (no Twitch credentials) (430.606ms)
+✔ Windows system voice generates a real WAV through the fixed stdin-based helper (433.8198ms)
+✔ fixture: disconnect while validation is pending cannot reopen the socket (1.4499ms)
+✔ fixture: subscribes to chat on the authenticated broadcaster only (5.3793ms)
+✔ fixture: refuses wrong client ID and missing chat scope (0.672ms)
+✔ fixture: subscription rejection never reports connected (1.2464ms)
+✔ fixture: channel and subscription type are checked before delivering chat (1.6131ms)
+✔ fixture: Twitch-directed reconnect preserves subscription without recreating it (0.9019ms)
+✔ fixture: arbitrary reconnect hosts are rejected (0.9101ms)
+✔ fixture: revoked authorization stops all sockets and clears token (0.4139ms)
+✔ fixture: logs never include access token or chat contents (0.8364ms)
+ℹ tests 50
+ℹ suites 0
+ℹ pass 50
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 545.8249

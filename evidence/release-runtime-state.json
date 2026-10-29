@@ -1,0 +1,24 @@
+{
+  "checkedAtUtc": "2026-10-29T23:14:03.6634417Z",
+  "version": "1.0.0",
+  "twitch": {
+    "connected": true,
+    "state": "subscribed",
+    "realChats": 1,
+    "login": "nguyen_____hung"
+  },
+  "rules": 5,
+  "assets": 13,
+  "engine": {
+    "active": null,
+    "queued": 0,
+    "progress": [
+      {
+        "key": "twitch-live:first-wow:1596628003",
+        "count": 0
+      }
+    ],
+    "entitlements": []
+  },
+  "overlayConnections": 1
+}

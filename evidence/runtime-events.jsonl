@@ -137,3 +137,11 @@
 {"at":"2026-10-29T22:51:48.869Z","type":"twitch_socket_error"}
 {"at":"2026-10-29T22:52:14.888Z","type":"twitch_socket_error"}
 {"at":"2026-10-29T22:52:32.390Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}
+{"at":"2026-10-29T23:03:26.263Z","type":"app_started","port":3210}
+{"at":"2026-10-29T23:08:40.617Z","type":"twitch_subscribed","transport":"EventSub WebSocket","transferred":false}
+{"at":"2026-10-29T23:09:25.706Z","type":"queued","jobId":"6968d5ad-efd3-427f-9925-1b2a43e8d265","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T23:09:25.707Z","type":"threshold_reached","ruleId":"first-wow","source":"twitch-live"}
+{"at":"2026-10-29T23:09:25.707Z","type":"twitch_chat_received","eventId":"D_xfIb8QiTVNM07U8o9CYHkCr9OhHRs3IVjIb0UmGZk="}
+{"at":"2026-10-29T23:09:26.048Z","type":"overlay_playing","jobId":"6968d5ad-efd3-427f-9925-1b2a43e8d265","client":"obs-browser","details":"video; time=0; ready=4"}
+{"at":"2026-10-29T23:09:31.718Z","type":"overlay_duration_complete","jobId":"6968d5ad-efd3-427f-9925-1b2a43e8d265","client":"obs-browser","details":""}
+{"at":"2026-10-29T23:09:31.719Z","type":"playback_finished","jobId":"6968d5ad-efd3-427f-9925-1b2a43e8d265","reason":"ended"}
